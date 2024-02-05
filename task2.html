@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 350px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        .error {
+            color: #e74c3c;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="return validateForm()">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+        </form>
+        <div id="errorMessage" class="error"></div>
+    </div>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var errorMessage = document.getElementById('errorMessage');
+
+            // Simple validation
+            if (username === '' || password === '') {
+                errorMessage.innerHTML = 'Please enter both username and password.';
+                return false;
+            }
+
+            // Simulate password hashing (in real-world, it should be done server-side)
+            var hashedPassword = hashPassword(password);
+
+            // Here, you would typically send the username and hashed password to the server for authentication
+
+            // For demonstration, we'll just alert the user with the hashed password
+            alert('Username: ' + username + '\nHashed Password: ' + hashedPassword);
+
+            return false; // Prevent form submission
+        }
+
+        // Simple password hashing function (not suitable for production)
+        function hashPassword(password) {
+            return btoa(password); // Base64 encoding for simplicity
+        }
+    </script>
+</body>
+</html>
